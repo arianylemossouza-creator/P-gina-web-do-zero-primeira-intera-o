@@ -1,12 +1,12 @@
-<!DOCTYPE html>  
+<!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" 
-    content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>corinthians</title>
     <style>
-        header{
+        header {
             background-color: #5600c7;
             color: #F6FAFF;
             text-align: center;
@@ -14,48 +14,90 @@
             margin: 0 auto;
             padding: 16px;
         }
+
         main {
-           background-color: #F6FAFF;
-           color: #5600c7;
-          text-align: center; 
-          max-width: 800px;
-           margin: 0 auto;
-           padding: 16px;
-           display: flex;
+            background-color: #F6FAFF;
+            color: #5600c7;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 16px;    
         }
-        img{
+
+        article {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            text-align: left;
+            margin-bottom: 24px;
+            background: #fff;
+            padding: 16px;
+            border-radius: 8px;
+        }
+
+        img {
             width: 80px;
             height: 80px;
-        }
-       .artigo-autor {
-           font-weight: bold;
+            object-fit: cover;
+            border-radius: 4px;
         }
 
+        .artigo-autor {
+            font-weight: bold;
+        }
     </style>
 </head>
+
 <body>
     <header>
-    <h1>sobre o corinthians </h1>
-    <p>vou compartilhar conhecimentos sobre o time brasileiro corinthians</p>
+        <h1>sobre o corinthians</h1>
+        <p>vou compartilhar conhecimentos sobre o timão</p>
     </header>
-     <main>
-        <img src="imagem-crthns.png" alt="Uma foto colorida mostra a Neo Química Arena repleta de 
-        torcedores do Corinthians. No centro da imagem, uma enorme bandeira
-        branca e preta se destaca, com o escudo do time e a inscrição 'A Fiel'. No topo da arena, o letreiro luminoso exibe 'CORINTHIANS'.">
-        <div>
-        <h2>Meu primeiro post</h2>
-         <p>Por: Ariany</p>
-         </p class="artigo-autor">Bem vinda(o) a minha pagina! Aqui eu vou compartilhar assuntos sobre o corinthians e curiosidades sobre o elenco.</p>
-         <button>❤️ <span>0</span></button>
-        </div>
+    <main>
+        <article>
+            <img src="imagem-crthns.png"
+                alt="Uma foto colorida mostra a Neo Química Arena repleta de torcedores do Corinthians.">
+            <div>
+                <h2>Meu primeiro post</h2>
+                <p class="artigo-autor">Por: Ariany</p>
+                <p>Bem-vinda(o) à minha página! Aqui eu vou compartilhar assuntos sobre o corinthians e curiosidades sobre o elenco.</p>
+                <button>❤️ <span>0</span></button>
+                <button>👍 <span>0</span></button>
+            </div>
+        </article>
 
-        </main>
-    </body>
+        <article>
+            <img src="imagem-crthns.png"
+                alt="Uma foto colorida mostra a Neo Química Arena repleta de torcedores do Corinthians.">
+            <div>
+                <h2>Meu segundo post</h2>
+                <p class="artigo-autor">Por: Ariany</p>
+                <p>Bem-vinda(o) à minha página! Aqui eu vou compartilhar assuntos sobre o corinthians e curiosidades sobre o elenco.</p>
+                <button>❤️ <span>0</span></button>
+                <button>👍 <span>0</span></button>
+            </div>
+        </article>
+    </main>
+
     <script>
-       const botao = document.querySelector("button");
-       botao.addEventListener("click", botaoClicado); 
+        const botoes = document.querySelectorAll("button");
+
+        botoes.forEach(function (botao) {
+            let curtiu = false;
+            botao.addEventListener("click", botaoclicado);
+            function botaoclicado() {
+                console.log("fui clicado");
+                let texto = botao.querySelector("span");
+                if (curtiu === false){
+                    texto.textContent++; 
+                    curtiu = true; 
+                } else{
+                    texto.textContent--;
+                    curtiu = false;
+                } 
+            }
+        })
 
 
-
-     </script>
-</html>   
+    </script>
+</body>
