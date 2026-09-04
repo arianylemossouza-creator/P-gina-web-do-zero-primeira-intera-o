@@ -21,7 +21,16 @@
           max-width: 800px;
            margin: 0 auto;
            padding: 16px;
+           display: flex;
         }
+        img{
+            width: 80px;
+            height: 80px;
+        }
+       .artigo-autor {
+           font-weight: bold;
+        }
+
     </style>
 </head>
 <body>
@@ -30,10 +39,23 @@
     <p>vou compartilhar conhecimentos sobre o time brasileiro corinthians</p>
     </header>
      <main>
-        <img src="" alt="">
-         <h2>Meu primeiro post</h2>
+        <img src="imagem-crthns.png" alt="Uma foto colorida mostra a Neo Química Arena repleta de 
+        torcedores do Corinthians. No centro da imagem, uma enorme bandeira
+        branca e preta se destaca, com o escudo do time e a inscrição 'A Fiel'. No topo da arena, o letreiro luminoso exibe 'CORINTHIANS'.">
+        <div>
+        <h2>Meu primeiro post</h2>
          <p>Por: Ariany</p>
-         <p>Bem vindos ao meu relatorio! Aqui eu vou compartilhar assuntos sobre o corinthians e curiosidades sobre o elenco.</p>
+         </p class="artigo-autor">Bem vinda(o) a minha pagina! Aqui eu vou compartilhar assuntos sobre o corinthians e curiosidades sobre o elenco.</p>
+         <button>❤️ <span>0</span></button>
+        </div>
+
         </main>
     </body>
-</html>
+    <script>
+       const botao = document.querySelector("button");
+       botao.addEventListener("click", botaoClicado); 
+
+
+
+     </script>
+</html>   
