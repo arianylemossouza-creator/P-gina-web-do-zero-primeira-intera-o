@@ -1,34 +1,225 @@
-// Lógica dos botões de curtir
-const botoesCurtir = document.querySelectorAll(".btn-curtir");
+<!DOCTYPE html>
+<html lang="pt-br">
 
-botoesCurtir.forEach(function (botao) {
-  let curtiu = false;
-
-  botao.addEventListener("click", function () {
-    const contador = botao.querySelector("span");
-    let valorAtual = Number(contador.textContent);
-
-    if (!curtiu) {
-      contador.textContent = valorAtual + 1;
-      curtiu = true;
-      botao.classList.add("curtido");
-    } else {
-      contador.textContent = valorAtual - 1;
-      curtiu = false;
-      botao.classList.remove("curtido");
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Receitas da Ariany</title>
+  <style>
+    :root {
+      --cor-primaria: #fc4abe;
+      --cor-secundaria: #ca469c;
+      --cor-fundo: #ffffff;
+      --cor-texto: #151428;
+      --cor-contraste: #f3eef7;
+      --cor-botao: #f9f9f9;
     }
-  });
-});
 
-// Lógica do Modo Escuro
-const botaoTema = document.getElementById("btn-tema");
+    /* Variáveis do Modo Escuro */
+    body.modo-escuro {
+      --cor-primaria: #9e1b6e;
+      --cor-secundaria: #ff77d0;
+      --cor-fundo: #151428;
+      --cor-texto: #f3eef7;
+      --cor-contraste: #2b294a;
+      --cor-botao: #211f3b;
+    }
 
-botaoTema.addEventListener("click", function () {
-  document.body.classList.toggle("dark-mode");
+    body {
+      max-width: 100vw;
+      min-height: 100vh;
+      margin: 0;
+      font-family: sans-serif;
+      background-color: var(--cor-fundo);
+      color: var(--cor-texto);
+      transition: background-color 0.3s, color 0.3s;
+    }
 
-  if (document.body.classList.contains("dark-mode")) {
-    botaoTema.textContent = "☀️ Modo Claro";
-  } else {
-    botaoTema.textContent = "🌙 Modo Escuro";
-  }
-});
+    header {
+      background-color: var(--cor-primaria);
+      color: #FFFFFF;
+      text-align: center;
+      margin: 0 auto;
+      padding: 16px;
+      position: relative;
+    }
+
+    #btn-tema {
+      margin-top: 8px;
+      font-weight: bold;
+    }
+
+    main {
+      background-color: var(--cor-fundo);
+      color: var(--cor-secundaria);
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      justify-content: center;
+      transition: background-color 0.3s;
+    }
+
+    article {
+      display: flex;
+      border: 1px solid var(--cor-secundaria);
+      border-radius: 8px;
+      gap: 16px;
+      padding: 16px;
+      flex: 1 1 42%;
+      min-width: 300px;
+      box-sizing: border-box;
+    }
+
+    article > div {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    article h2 {
+      margin-top: 0;
+    }
+
+    article p {
+      color: var(--cor-texto);
+      line-height: 1.5;
+    }
+
+    .artigo-autor {
+      font-weight: bold;
+      color: var(--cor-secundaria);
+      margin-top: 0;
+    }
+
+    img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 8px;
+      flex-shrink: 0;
+    }
+
+    .botoes-like {
+      margin-top: auto;
+      padding-top: 12px;
+      display: flex;
+      gap: 8px;
+    }
+
+    button {
+      background-color: var(--cor-botao);
+      border: 1px solid var(--cor-secundaria);
+      color: var(--cor-texto);
+      padding: 6px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background-color 0.2s, transform 0.1s;
+    }
+
+    button:hover {
+      background-color: var(--cor-contraste);
+    }
+
+    button:active {
+      transform: scale(0.95);
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Minhas Receitas</h1>
+    <p>Vou compartilhar receitas fáceis e deliciosas</p>
+    <button id="btn-tema">🌙 Modo Escuro</button>
+  </header>
+
+  <main>
+    <!-- Cartão de Boas-vindas -->
+    <article>
+      <img src="receitas.jpeg" alt="Imagem de boas-vindas">
+      <div>
+        <h2>Bem-vindos!</h2>
+        <p class="artigo-autor">Por: Ariany</p>
+        <p>Olá, sejam bem-vindos à minha página de receitas! Vou compartilhar receitas fáceis.</p>
+        <div class="botoes-like">
+          <button class="btn-like">❤️ <span>0</span></button>
+          <button class="btn-like">👍 <span>0</span></button>
+        </div>
+      </div>
+    </article>
+
+    <!-- Receita 1 -->
+    <article>
+      <img src="brigadeiro.jpeg" alt="Brigadeiro de micro-ondas">
+      <div>
+        <h2>Receita 1: Brigadeiro de micro-ondas</h2>
+        <p class="artigo-autor">Por: Ariany</p>
+        <p><strong>Ingredientes:</strong> 1 lata de leite condensado, 1 colher (sopa) de manteiga e 3 colheres (sopa) de chocolate em pó ou achocolatado.</p>
+        <p><strong>Preparo:</strong> Em um refratário fundo de vidro (para não transbordar), misture todos os ingredientes. Leve ao micro-ondas em potência alta por 3 minutos. Retire, mexa bem com uma colher e volte por mais 2 a 3 minutos. Misture novamente até ficar brilhante e espere esfriar.</p>
+        <div class="botoes-like">
+          <button class="btn-like">❤️ <span>0</span></button>
+          <button class="btn-like">👍 <span>0</span></button>
+        </div>
+      </div>
+    </article>
+
+    <!-- Receita 2 -->
+    <article>
+      <img src="receita2.jpeg" alt="Bolo de caneca">
+      <div>
+        <h2>Receita 2: Bolo de caneca de chocolate</h2>
+        <p class="artigo-autor">Por: Ariany</p>
+        <p><strong>Ingredientes:</strong> 1 ovo, 4 colheres (sopa) de leite, 3 colheres (sopa) de óleo, 2 colheres (sopa) de chocolate em pó, 3 colheres (sopa) de açúcar, 4 colheres (sopa) de farinha de trigo e 1 colher (café) de fermento em pó.</p>
+        <p><strong>Preparo:</strong> Em uma caneca grande (pelo menos 300 ml), bata o ovo com um garfo. Adicione o leite, o óleo, o chocolate e o açúcar, misturando bem. Incorpore a farinha de trigo até a massa ficar lisa e, por último, misture delicadamente o fermento. Leve ao micro-ondas em potência alta por 1 minuto e 30 segundos a 2 minutos.</p>
+        <div class="botoes-like">
+          <button class="btn-like">❤️ <span>0</span></button>
+          <button class="btn-like">👍 <span>0</span></button>
+        </div>
+      </div>
+    </article>
+
+    <!-- Receita 3 -->
+    <article>
+      <img src="receita.jpeg" alt="Panqueca salgada">
+      <div>
+        <h2>Receita 3: Panqueca salgada</h2>
+        <p class="artigo-autor">Por: Ariany</p>
+        <p><strong>Ingredientes:</strong> 1 ovo, 1 xícara (chá) de leite, 1 xícara (chá) de farinha de trigo, 1 colher (sopa) de óleo e 1 pitada de sal.</p>
+        <p><strong>Preparo:</strong> Bata tudo no liquidificador até ficar bem liso. Aqueça uma frigideira antiaderente levemente untada em fogo médio, despeje uma concha pequena de massa e gire a frigideira para espalhar bem fino. Quando as bordas soltarem, vire e doure o outro lado por alguns segundos. Recheie com carne moída, frango cremoso ou queijo com presunto.</p>
+        <div class="botoes-like">
+          <button class="btn-like">❤️ <span>0</span></button>
+          <button class="btn-like">👍 <span>0</span></button>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <script>
+    // Funcionalidade do Modo Escuro
+    const btnTema = document.getElementById('btn-tema');
+    btnTema.addEventListener('click', () => {
+      document.body.classList.toggle('modo-escuro');
+      if (document.body.classList.contains('modo-escuro')) {
+        btnTema.textContent = '☀️ Modo Claro';
+      } else {
+        btnTema.textContent = '🌙 Modo Escuro';
+      }
+    });
+
+    // Funcionalidade dos botões de Like
+    const botoesLike = document.querySelectorAll('.btn-like');
+    botoesLike.forEach(botao => {
+      botao.addEventListener('click', () => {
+        const span = botao.querySelector('span');
+        let contagem = parseInt(span.textContent);
+        span.textContent = contagem + 1;
+      });
+    });
+  </script>
+</body>
+
+</html>
